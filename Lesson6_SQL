@@ -1,0 +1,31 @@
+1. select firstname, lastname, email from users order by 2;
+
+2. select gender, user_id from profiles where(gender='f');
+
+3. select firstname, lastname from users where(id<=5);
+
+4. select id from media where(media_type_id=1 and size<100000);
+
+5. select distinct hometown from profiles;
+
+6. select filename from media where(user_id=2);
+
+7. select count(*) from profiles where gender='f';
+select count(*) from profiles where gender='m';
+
+8. select distinct  hometown from profiles where hometown like 'P%';
+
+9. select 
+ concat(u.firstname, ' ', u.lastname) as name, 
+ (select max(p.birthday) 
+  from profiles p 
+ ) as dateOfBirth 
+from users u 
+where u.id = ( 
+ select p2.user_id 
+ from profiles p2 
+ where p2.birthday = ( 
+  select max(p3.birthday) 
+  from profiles p3 
+ ) 
+);
